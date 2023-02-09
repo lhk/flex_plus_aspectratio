@@ -1,0 +1,66 @@
+#toplevel {
+    height: 97vh;
+    width: 97vw;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+}
+
+#wrappingContainer{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin calcdims($cols) {
+    $total: 1800;
+    $rows : ceil(calc(1800/$cols));
+    $width: calc(percentage(1)/$cols);
+    $height: calc(percentage(1)/$rows);
+    width: $width;
+    height: $height;
+}
+
+
+.container {
+    display: grid;
+    overflow: hidden;
+    background-color: pink;
+    outline: 5px solid black;
+    @include calcdims(55);
+
+    @media (max-aspect-ratio: 2/3) {
+        background-color: red;
+        @include calcdims(10);
+    }
+
+    @media (min-aspect-ratio: 4/1) {
+        background-color: blue;
+        @include calcdims(30);
+    }
+  }
+  
+  .fitWidth {
+    width: 95%;
+    max-height: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    /* using the below to center the text, optional */
+    display: grid;
+  }
+  
+  .fitHeight {
+    height: 95%;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    background: #a0522d;
+  
+    outline: 2px solid black;
+  }
